@@ -6372,7 +6372,7 @@ describe('usePromptActions transport-loss submit reconcile (#123079)', () => {
     expect(card).toBeTruthy()
     expect(card?.errorSurface).toBeUndefined()
     // No transport probe for a provider failure.
-    expect(requestGateway.mock.calls.every(([method]: never[]) => method !== 'session.active_list')).toBe(true)
+    expect(requestGateway.mock.calls.every(([method]: [string]) => method !== 'session.active_list')).toBe(true)
   })
 
   it('does not treat the pre-send not-connected refusal as a transport loss', async () => {
@@ -6403,6 +6403,6 @@ describe('usePromptActions transport-loss submit reconcile (#123079)', () => {
       .find(message => message.error)
 
     expect(card).toBeTruthy()
-    expect(requestGateway.mock.calls.every(([method]: never[]) => method !== 'session.active_list')).toBe(true)
+    expect(requestGateway.mock.calls.every(([method]: [string]) => method !== 'session.active_list')).toBe(true)
   })
 })
